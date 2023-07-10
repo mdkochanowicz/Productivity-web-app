@@ -3,68 +3,95 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Questrial&display=swap"
+      rel="stylesheet"
+    />
+    <link href="style.css" rel="stylesheet" />
     <title>Productivity App</title>
   </head>
   <body>
-    <header>
-      <h1>Productivity App</h1>
-      <img src="icon.png" alt="logo" height="64" width="64" />
-      <button>Add activity</button>
-    </header>
+    <div class="container">
+      <header class="header">
+        <div class="logo">
+          <h1>Productivity App</h1>
+          <img src="icon.png" alt="logo" height="64" width="64" />
+        </div>
+        <button class="btn btn-large">Add activity</button>
+      </header>
 
-    <form>
-      <input type="text" placeholder="Activity" />
-      <span>20</span>
-      <input type="text" placeholder="Place" />
-      <select>
-        <option value="">Choose category:</option>
-        <option value="category 1">Category 1</option>
-        <option value="category 2">Category 2</option>
-      </select>
-      <button>Add</button>
-    </form>
+      <form class="category-form">
+        <input type="text" placeholder="Activity" />
+        <span>20</span>
+        <input type="text" placeholder="Place" />
+        <select>
+          <option value="">Choose category:</option>
+          <option value="category 1">Category 1</option>
+          <option value="category 2">Category 2</option>
+        </select>
+        <button class="btn btn-large">Add</button>
+      </form>
 
-    <main>
-      <aside>
-        <ul>
-          <li><button>All</button></li>
-          <li><button>Category 1</button></li>
-          <li><button>Category 2</button></li>
-        </ul>
-      </aside>
+      <main>
+        <aside>
+          <ul>
+            <li class="category-list">
+              <button class="btn btn-all-cat">All</button>
+            </li>
+            <li class="category-list">
+              <button class="btn btn-cat" style="background-color: #64d69d">
+                Category 1
+              </button>
+            </li>
+            <li class="category-list">
+              <button class="btn btn-cat" style="background-color: #64d69d">
+                Category 2
+              </button>
+            </li>
+          </ul>
+        </aside>
 
-      <section>
-        <ul>
-          <li>
-            <p>
-              Activity 1
-              <a
-                href="https://www.google.pl/maps/place/Krak%C3%B3w/@50.0468467,19.9224732,12z/data=!3m1!4b1!4m6!3m5!1s0x471644c0354e18d1:0xb46bb6b576478abf!8m2!3d50.0646501!4d19.9449799!16zL20vMDQ5MXk?entry=ttu"
-                target="_blank"
-                >(place)</a
+        <section>
+          <ul>
+            <li class="activity">
+              <p>
+                Activity 1
+                <a
+                  class="place"
+                  href="https://www.google.pl/maps/place/Krak%C3%B3w/@50.0468467,19.9224732,12z/data=!3m1!4b1!4m6!3m5!1s0x471644c0354e18d1:0xb46bb6b576478abf!8m2!3d50.0646501!4d19.9449799!16zL20vMDQ5MXk?entry=ttu"
+                  target="_blank"
+                  >(place)</a
+                >
+              </p>
+              <span class="category" style="background-color: #64d69d"
+                >#Category 1#</span
               >
-              <span>#Category 1#</span>
-            </p>
-            <div>
-              <button>( ͡° ͜ʖ ͡°) <strong>Done</strong></button>
-              <button>( ͠° ͟ʖ ͡°) Undone</button>
-              <button>(ʘ ʖ̯ ʘ)Important</button>
-            </div>
-          </li>
-          <li>
-            <p>
-              Activity 2
-              <a href="" target="_blank">(place)</a>
-              <span>#Category 2#</span>
-            </p>
-            <div>
-              <button>( ͡° ͜ʖ ͡°) <strong>Done</strong></button>
-              <button>( ͠° ͟ʖ ͡°) Undone</button>
-              <button>(ʘ ʖ̯ ʘ)Important</button>
-            </div>
-          </li>
-        </ul>
-      </section>
-    </main>
+              <div class="done-buttons">
+                <button>( ͡° ͜ʖ ͡°) Done</button>
+                <button>( ͠° ͟ʖ ͡°) Undone</button>
+                <button>(ʘ ʖ̯ ʘ)Important</button>
+              </div>
+            </li>
+            <li class="activity">
+              <p>
+                Activity 2
+                <a class="place" href="" target="_blank">(place)</a>
+              </p>
+              <span class="category" style="background-color: #64d69d"
+                >#Category 2#</span
+              >
+              <div class="done-buttons">
+                <button>( ͡° ͜ʖ ͡°) Done</button>
+                <button>( ͠° ͟ʖ ͡°) Undone</button>
+                <button>(ʘ ʖ̯ ʘ)Important</button>
+              </div>
+            </li>
+          </ul>
+          <p>kochanowicz</p>
+        </section>
+      </main>
+    </div>
   </body>
 </html>
