@@ -179,8 +179,9 @@ ul {
 }
 
 .btn-large {
-  font-size: 25px;
-  padding: 20px 30px 16px;
+  margin-top: 10px;
+  padding: 16px 30px;
+  margin-left: 30px;
 }
 
 .btn-all-cat {
@@ -228,4 +229,109 @@ ul {
   font-family: "Questrial", sans-serif;
   text-transform: uppercase;
   margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .activity {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-end;
+  }
+
+  .main {
+    grid-template-columns: 1fr;
+  }
+
+  .done-buttons {
+    margin-left: auto;
+    flex-shrink: 0;
+
+    display: flex;
+    gap: 1px;
+  }
+
+  .done-buttons button {
+    text-align: center;
+    border-radius: 10px;
+    border: none;
+    font-family: "Questrial", sans-serif;
+    line-height: 1;
+    text-transform: uppercase;
+    font-size: 10px;
+    background-color: #64d69d;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+
+  .done-buttons button:hover {
+    background-color: #ffffff;
+    color: #64d69d;
+    transform: scale(1.05);
+  }
+
+  .btn {
+    border: none;
+    font-family: "Questrial", sans-serif;
+    line-height: 1.2;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 10px 0 13px;
+    background-image: linear-gradient(120deg, #64d69d 0%, #ffffff 100%);
+    color: inherit;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+
+  .btn:hover {
+    background-image: linear-gradient(120deg, #ffffff 0%, #64d69d 100%);
+    color: inherit;
+    transform: scale(1.05);
+  }
+
+  .btn-large {
+    font-size: 15px;
+    padding: 20px 30px 16px;
+    flex-direction: column;
+  }
+
+  .btn-all-cat {
+    font-size: 15px;
+    padding: 20px 30px 16px;
+    margin-bottom: 20px;
+    width: 90%;
+  }
+
+  .btn-cat {
+    font-size: 25px;
+    padding: 20px 30px 16px;
+    margin-bottom: 20px;
+    width: 100%;
+    background-image: none;
+  }
+
+  .category-form input,
+  .category-form select {
+    width: auto;
+  }
+  h1 {
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: #ffffff;
+    flex-direction: column;
+  }
+
+  .category-form {
+    padding: 20px 30px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
 }
