@@ -1,0 +1,339 @@
+* {
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ffffff;
+  font-family: "Questrial", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000000;
+  margin: 0;
+  padding: 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 48px;
+}
+
+.container {
+  max-width: 1600px;
+  background-color: white;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 30;
+  background-color: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/*
+.logo {
+  padding: 10px;
+  align-items: left;
+  gap: 10px;
+}
+
+.logo img {
+  width: 70px;
+  height: 70px;
+}
+*/
+
+h1 {
+  color: #64d69d;
+  font-size: 40px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  font-family: "DM Sans", sans-serif;
+}
+
+.activity-form {
+  margin-left: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 20px 20px;
+  text-align: center;
+
+  /*
+  display: flex;
+  align-self: center;
+  gap: 16px;
+  */
+}
+
+.category-list {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px 10px;
+  /*text-align: center;*/
+  max-width: 500px;
+}
+
+.category {
+  text-transform: uppercase;
+  font-size: 14;
+  font-family: "Questrial", sans-serif;
+  background-color: #64d69d;
+  margin: auto;
+  padding-top: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+}
+
+.activity {
+  color: #000000;
+  background-color: #ffffff;
+  font-size: 20px;
+  line-height: 1.2;
+  font-family: "Questrial", sans-serif;
+  padding: 20px 20px;
+  letter-spacing: 3px;
+
+  display: flex;
+  align-items: left;
+  gap: 24px;
+}
+
+.done-buttons {
+  margin-left: auto;
+  flex-shrink: 0;
+
+  display: flex;
+  gap: 1px;
+}
+
+.done-buttons button {
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px 10px;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+  font-family: "Questrial", sans-serif;
+  line-height: 1.2;
+  text-transform: uppercase;
+  font-size: 14px;
+  background-color: #64d69d;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.done-buttons button:hover {
+  background-color: #ffffff;
+  color: #64d69d;
+  transform: scale(1.05);
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: "Questrial", sans-serif;
+}
+
+.place:link,
+.place:visited {
+  color: red;
+  transition: 0.5s;
+}
+
+.place:hover {
+  color: #64d69d;
+}
+
+.place:active {
+  color: green;
+}
+
+.btn {
+  border: none;
+  font-family: "Questrial", sans-serif;
+  line-height: 1.2;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 10px 0 13px;
+  background-image: linear-gradient(120deg, #64d69d 0%, #ffffff 100%);
+  color: inherit;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.btn:hover {
+  background-image: linear-gradient(120deg, #ffffff 0%, #64d69d 100%);
+  color: inherit;
+  transform: scale(1.05);
+}
+
+.btn-large {
+  margin-top: 10px;
+  padding: 16px 30px;
+  margin-left: 30px;
+}
+
+.btn-all-cat {
+  font-size: 20px;
+  width: 50%;
+}
+
+.btn-cat {
+  font-size: 20px;
+  width: 50%;
+  background-image: none;
+}
+
+.activity-form input,
+.activity-form select {
+  padding: 10px 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: none;
+  font-family: "Questrial", sans-serif;
+  line-height: 1.2;
+  text-transform: uppercase;
+  font-size: 14px;
+  background-color: #64d69d;
+  color: #000000;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.activity-form input::placeholder {
+  color: #000000;
+}
+
+.activity-form input:first-child {
+  flex-grow: 1;
+}
+
+.activity-form span {
+  color: #000000;
+  font-size: 14px;
+  font-family: "Questrial", sans-serif;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .activity {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-end;
+  }
+
+  .main {
+    grid-template-columns: 1fr;
+  }
+
+  .done-buttons {
+    margin-left: auto;
+    flex-shrink: 0;
+
+    display: flex;
+    gap: 1px;
+  }
+
+  .done-buttons button {
+    text-align: center;
+    border-radius: 10px;
+    border: none;
+    font-family: "Questrial", sans-serif;
+    line-height: 1;
+    text-transform: uppercase;
+    font-size: 10px;
+    background-color: #64d69d;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+
+  .done-buttons button:hover {
+    background-color: #ffffff;
+    color: #64d69d;
+    transform: scale(1.05);
+  }
+
+  .btn {
+    border: none;
+    font-family: "Questrial", sans-serif;
+    line-height: 1.2;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 10px 0 13px;
+    background-image: linear-gradient(120deg, #64d69d 0%, #ffffff 100%);
+    color: inherit;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+
+  .btn:hover {
+    background-image: linear-gradient(120deg, #ffffff 0%, #64d69d 100%);
+    color: inherit;
+    transform: scale(1.05);
+  }
+
+  .btn-large {
+    font-size: 15px;
+    padding: 20px 30px 16px;
+    flex-direction: column;
+  }
+
+  .btn-all-cat {
+    font-size: 15px;
+    padding: 20px 30px 16px;
+    margin-bottom: 20px;
+    width: 90%;
+  }
+
+  .btn-cat {
+    font-size: 25px;
+    padding: 20px 30px 16px;
+    margin-bottom: 20px;
+    width: 100%;
+    background-image: none;
+  }
+
+  .activity-form input,
+  .activity-form select {
+    width: auto;
+  }
+  h1 {
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: #ffffff;
+    flex-direction: column;
+  }
+
+  .activity-form {
+    padding: 20px 30px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+}
