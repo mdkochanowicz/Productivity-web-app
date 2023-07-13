@@ -2,51 +2,51 @@ import "./style.css";
 import { useEffect, useState } from "react";
 import supabase from "./supabase";
 
-const initialActivities = [
-  {
-    id: 1,
-    text: "German language",
-    place: "https://goo.gl/maps/eRfWFwuUi9UewzLg9",
-    category: "learning",
-    checkDone: 3,
-    checkUndone: 9,
-    checkImportant: 4,
-    createdIn: 2023,
-  },
-  {
-    id: 2,
-    text: "Mathematics",
-    place: "https://goo.gl/maps/bKJ74vEWgHmDyidZ9",
-    category: "learning",
-    checkDone: 11,
-    checkUndone: 2,
-    checkImportant: 0,
-    createdIn: 2023,
-  },
-  {
-    id: 3,
-    text: "Fitness",
-    place: "https://goo.gl/maps/8JZih2SD1J1f27gDA",
-    category: "sport",
-    checkDone: 8,
-    checkUndone: 3,
-    checkImportant: 1,
-    createdIn: 2023,
-  },
-];
+// const initialActivities = [
+//   {
+//     id: 1,
+//     text: "German language",
+//     place: "https://goo.gl/maps/eRfWFwuUi9UewzLg9",
+//     category: "learning",
+//     checkDone: 3,
+//     checkUndone: 9,
+//     checkImportant: 4,
+//     createdIn: 2023,
+//   },
+//   {
+//     id: 2,
+//     text: "Mathematics",
+//     place: "https://goo.gl/maps/bKJ74vEWgHmDyidZ9",
+//     category: "learning",
+//     checkDone: 11,
+//     checkUndone: 2,
+//     checkImportant: 0,
+//     createdIn: 2023,
+//   },
+//   {
+//     id: 3,
+//     text: "Fitness",
+//     place: "https://goo.gl/maps/8JZih2SD1J1f27gDA",
+//     category: "sport",
+//     checkDone: 8,
+//     checkUndone: 3,
+//     checkImportant: 1,
+//     createdIn: 2023,
+//   },
+// ];
 
-function Counter() {
-  const [count, setCount] = useState(0);
+// function Counter() {
+//   const [count, setCount] = useState(0);
 
-  return (
-    <div>
-      <span style={{ fontSize: "40px" }}>{count}</span>
-      <button className="btn btn-large" onClick={() => setCount((c) => c + 1)}>
-        +1
-      </button>
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <span style={{ fontSize: "40px" }}>{count}</span>
+//       <button className="btn btn-large" onClick={() => setCount((c) => c + 1)}>
+//         +1
+//       </button>
+//     </div>
+//   );
+// }
 
 function App() {
   const [showForm, setShowForm] = useState(false);
