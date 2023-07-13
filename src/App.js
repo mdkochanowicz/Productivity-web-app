@@ -1,5 +1,6 @@
 import "./style.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import supabase from "./supabase";
 
 const initialActivities = [
   {
@@ -49,7 +50,35 @@ function Counter() {
 
 function App() {
   const [showForm, setShowForm] = useState(false);
-  const [activities, setActivities] = useState(initialActivities);
+  const [activities, setActivities] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentCategory, setCurrentCategory] = useState("All");
+
+  useEffect(
+    function () {
+      async function getActivities() {
+        setLoading(true);
+
+        let query = supabase.from("activities").select("*");
+
+        if (currentCategory !== "All")
+          query = query.eq("category", currentCategory);
+
+        const { data: activities, error } = await query
+
+          .order("checkDone", { ascending: false })
+          .limit(1000);
+
+        if (!error) {
+          setActivities(activities);
+        } else alert(error.message);
+
+        setLoading(false);
+      }
+      getActivities();
+    },
+    [currentCategory]
+  );
 
   return (
     <>
@@ -63,11 +92,15 @@ function App() {
       ) : null}
 
       <main className="main">
-        <CategoryFilter />
-        <ActivityList activities={activities} />
+        <CategoryFilter setCurrentCategory={setCurrentCategory} />
+        {loading ? <Loader /> : <ActivityList activities={activities} />}
       </main>
     </>
   );
+}
+
+function Loader() {
+  return <p className="message">Loading...</p>;
 }
 
 function Header({ showForm, setShowForm }) {
@@ -112,24 +145,32 @@ function NewActivityForm({ setActivities, setShowForm }) {
   const [text, setText] = useState("");
   const [place, setPlace] = useState("");
   const [category, setCategory] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     console.log(text, place, category);
 
     if (text && isValidHttpUrl(place) && category) {
-      const newActivity = {
-        id: Math.round(Math.random() * 1000000),
-        text,
-        place,
-        category,
-        checkDone: 0,
-        checkUndone: 0,
-        checkImportant: 0,
-        createdIn: new Date().getFullYear(),
-      };
+      // const newActivity = {
+      //   id: Math.round(Math.random() * 1000000),
+      //   text,
+      //   place,
+      //   category,
+      //   checkDone: 0,
+      //   checkUndone: 0,
+      //   checkImportant: 0,
+      //   createdIn: new Date().getFullYear(),
+      // };
 
-      setActivities((activities) => [newActivity, ...activities]);
+      setIsUploading(true);
+      const { data: newActivity, error } = await supabase
+        .from("activities")
+        .insert([{ text, place, category }])
+        .select();
+      setIsUploading(false);
+
+      setActivities((activities) => [newActivity[0], ...activities]);
 
       setText("");
       setPlace("");
@@ -146,14 +187,20 @@ function NewActivityForm({ setActivities, setShowForm }) {
         placeholder="Activity"
         value={text}
         onChange={(e) => setText(e.target.value)}
+        disabled={isUploading}
       />
       <input
         value={place}
         type="text"
         placeholder="Place"
         onChange={(e) => setPlace(e.target.value)}
+        disabled={isUploading}
       />
-      <select value={category} onChange={(e) => setCategory(e.target.value)}>
+      <select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        disabled={isUploading}
+      >
         <option value="">Choose category:</option>
         {CATEGORIES.map((cat) => (
           <option key={cat.name} value={cat.name}>
@@ -161,23 +208,31 @@ function NewActivityForm({ setActivities, setShowForm }) {
           </option>
         ))}
       </select>
-      <button className="btn btn-large">Add</button>
+      <button className="btn btn-large" disabled={isUploading}>
+        Add
+      </button>
     </form>
   );
 }
 
-function CategoryFilter() {
+function CategoryFilter({ setCurrentCategory }) {
   return (
     <aside>
       <ul>
         <li className="category-list">
-          <button className="btn btn-all-cat">All</button>
+          <button
+            className="btn btn-all-cat"
+            onClick={() => setCurrentCategory("All")}
+          >
+            All
+          </button>
         </li>
         {CATEGORIES.map((cat) => (
           <li key={cat.name} className="category-list">
             <button
               className="btn btn-cat"
               style={{ backgroundColor: cat.color }}
+              onClick={() => setCurrentCategory(cat.name)}
             >
               {cat.name}
             </button>
@@ -189,6 +244,10 @@ function CategoryFilter() {
 }
 
 function ActivityList({ activities }) {
+  if (activities.length === 0) {
+    return <p className="message">No activities yet.</p>;
+  }
+
   return (
     <section>
       <ul className="activities-list">
