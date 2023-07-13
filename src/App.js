@@ -290,7 +290,12 @@ function Activity({ activity, setActivities }) {
     <li className="activity">
       <p>
         {activity.text}
-        <a className="place" href={activity.place} target="_blank">
+        <a
+          className="place"
+          href={activity.place}
+          target="_blank"
+          rel="noreferrer"
+        >
           (place)
         </a>
       </p>
