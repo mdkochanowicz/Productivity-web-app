@@ -149,6 +149,12 @@ h1 {
   transform: scale(1.05);
 }
 
+.done-buttons button:disabled {
+  background-color: #64d69d;
+  color: #64d69d;
+  transform: scale(1.05);
+}
+
 ul {
   list-style: none;
   margin: 0;

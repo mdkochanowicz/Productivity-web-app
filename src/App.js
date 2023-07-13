@@ -93,7 +93,11 @@ function App() {
 
       <main className="main">
         <CategoryFilter setCurrentCategory={setCurrentCategory} />
-        {loading ? <Loader /> : <ActivityList activities={activities} />}
+        {loading ? (
+          <Loader />
+        ) : (
+          <ActivityList activities={activities} setActivities={setActivities} />
+        )}
       </main>
     </>
   );
@@ -170,7 +174,8 @@ function NewActivityForm({ setActivities, setShowForm }) {
         .select();
       setIsUploading(false);
 
-      setActivities((activities) => [newActivity[0], ...activities]);
+      if (!error)
+        setActivities((activities) => [newActivity[0], ...activities]);
 
       setText("");
       setPlace("");
@@ -243,7 +248,7 @@ function CategoryFilter({ setCurrentCategory }) {
   );
 }
 
-function ActivityList({ activities }) {
+function ActivityList({ activities, setActivities }) {
   if (activities.length === 0) {
     return <p className="message">No activities yet.</p>;
   }
@@ -252,7 +257,11 @@ function ActivityList({ activities }) {
     <section>
       <ul className="activities-list">
         {activities.map((activity) => (
-          <Activity key={activity.id} activity={activity} />
+          <Activity
+            key={activity.id}
+            activity={activity}
+            setActivities={setActivities}
+          />
         ))}
       </ul>
       <p>There are {activities.length} activities.</p>
@@ -260,7 +269,23 @@ function ActivityList({ activities }) {
   );
 }
 
-function Activity({ activity }) {
+function Activity({ activity, setActivities }) {
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  async function handleCheck(columnName) {
+    setIsUpdating(true);
+    const { data: updatedActivity, error } = await supabase
+      .from("activities")
+      .update({ [columnName]: activity[columnName] + 1 })
+      .eq("id", activity.id)
+      .select();
+    setIsUpdating(false);
+
+    if (!error)
+      setActivities((activities) =>
+        activities.map((a) => (a.id === activity.id ? updatedActivity[0] : a))
+      );
+  }
   return (
     <li className="activity">
       <p>
@@ -280,9 +305,21 @@ function Activity({ activity }) {
         {activity.category}
       </span>
       <div className="done-buttons">
-        <button>( ͡° ͜ʖ ͡°) Done: {activity.checkDone}</button>
-        <button>( ͠° ͟ʖ ͡°) Undone: {activity.checkUndone}</button>
-        <button>(ʘ ʖ̯ ʘ)Important: {activity.checkImportant}</button>
+        <button onClick={() => handleCheck("checkDone")} disabled={isUpdating}>
+          ( ͡° ͜ʖ ͡°) Done: {activity.checkDone}
+        </button>
+        <button
+          onClick={() => handleCheck("checkUndone")}
+          disabled={isUpdating}
+        >
+          ( ͠° ͟ʖ ͡°) Undone: {activity.checkUndone}
+        </button>
+        <button
+          onClick={() => handleCheck("checkImportant")}
+          disabled={isUpdating}
+        >
+          (ʘ ʖ̯ ʘ)Important: {activity.checkImportant}
+        </button>
       </div>
     </li>
   );
